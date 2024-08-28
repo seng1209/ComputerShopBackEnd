@@ -34,7 +34,6 @@ const App = () => {
         <Sider style={siderStyle}>
           <div className="demo-logo-vertical" />
           <HomePage />
-          {/* <Outlet /> */}
         </Sider>
         <Layout
           style={{
@@ -62,7 +61,6 @@ const App = () => {
               }}
             >
               <MenuPage />
-              {/* <Outlet /> */}
             </div>
           </Content>
           <Footer

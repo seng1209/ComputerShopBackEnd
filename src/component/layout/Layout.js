@@ -39,11 +39,11 @@ function Layout() {
       <Link className="menu-item" to="/sale">
         Sale
       </Link>
-      <Link className="menu-item" to="/import">
-        Import
-      </Link>
       <Link className="menu-item" to="/invoice">
         Invoice
+      </Link>
+      <Link className="menu-item" to="/import">
+        Import
       </Link>
     </ul>
   );
