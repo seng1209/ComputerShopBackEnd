@@ -32,7 +32,7 @@ const Payment = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>UUID</th>
             <th>Pay Date</th>
             <th>Customer</th>
             <th>Staff</th>
@@ -44,7 +44,7 @@ const Payment = () => {
           {payments.map((payment, index) => {
             return (
               <tr key={index}>
-                <td>{index + 1}</td>
+                <td>{payment.uuid}</td>
                 <td>
                   {new Date(payment.payDate)
                     .toISOString()

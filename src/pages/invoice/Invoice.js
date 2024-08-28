@@ -47,7 +47,12 @@ const Invoice = () => {
             return (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{invoice.invoiceDate}</td>
+                <td>
+                  {new Date(invoice.invoiceDate)
+                    .toISOString()
+                    .slice(0, 19)
+                    .replace("T", " ")}
+                </td>
                 <td>{invoice.totalAmount}</td>
                 <td>{invoice.paidAmount}</td>
                 <td>{invoice.oweAmount}</td>

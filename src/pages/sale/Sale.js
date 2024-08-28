@@ -31,7 +31,7 @@ function BasicExample() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>UUID</th>
             <th>Sale Date</th>
             <th>Customer Name</th>
             <th>Staff Name</th>
@@ -43,7 +43,7 @@ function BasicExample() {
           {sales.map((sale, index) => {
             return (
               <tr key={index}>
-                <td>{index + 1}</td>
+                <td>{sale.uuid}</td>
                 <td>
                   {new Date(sale.saleDate)
                     .toISOString()
