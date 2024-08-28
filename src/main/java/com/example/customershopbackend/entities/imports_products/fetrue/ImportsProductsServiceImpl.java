@@ -10,8 +10,10 @@ import com.example.customershopbackend.entities.product.Product;
 import com.example.customershopbackend.entities.product.feture.ProductRepository;
 import com.example.customershopbackend.util.RandomUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ImportsProductsServiceImpl implements ImportsProductsService{
 
     private final ImportsProductsRepository importsProductsRepository;
@@ -42,7 +45,7 @@ public class ImportsProductsServiceImpl implements ImportsProductsService{
         importsProducts.setImports(imports);
         importsProducts.setProduct(product);
         importsProducts.setAmount(importsProductsRequest.unitPrice().multiply(BigDecimal.valueOf(importsProductsRequest.importQuantity())));
-
+        log.info("Amount : {}", importsProducts.getAmount());
         importsProductsRepository.save(importsProducts);
         return importsProductsMapper.toImportsProductsResponse(importsProducts);
     }
@@ -94,5 +97,11 @@ public class ImportsProductsServiceImpl implements ImportsProductsService{
     public List<ImportsProductsResponse> findAllByImportUuid(String importUuid) {
         List<ImportsProducts> importsProductsList = importsProductsRepository.findAllByImportUuid(importUuid);
         return importsProductsMapper.toImportsProductsResponseList(importsProductsList);
+    }
+
+    @Transactional
+    @Override
+    public void updateTotalAmount(String importUuid) {
+        importsProductsRepository.updateTotalAmountByImportUuid(importUuid);
     }
 }

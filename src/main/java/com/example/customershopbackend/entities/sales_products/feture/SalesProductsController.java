@@ -43,4 +43,9 @@ public class SalesProductsController {
         return salesProductsService.findAllBySaleUuid(uuid);
     }
 
+    @PutMapping("/sale/{saleUuid}")
+    public void updateTotalAmount(@PathVariable String saleUuid){
+        salesProductsService.updateTotalAmount(saleUuid);
+    }
+
 }

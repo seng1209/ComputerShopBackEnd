@@ -18,4 +18,6 @@ public interface SalesProductsService {
 
     List<SalesProductsResponse> findAllBySaleUuid(String saleUuid);
 
+    void updateTotalAmount(String saleUuid);
+
 }

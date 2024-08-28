@@ -10,8 +10,10 @@ import com.example.customershopbackend.entities.sales_products.feture.dto.SalesP
 import com.example.customershopbackend.entities.sales_products.feture.dto.UpdateSalesProductsRequest;
 import com.example.customershopbackend.util.RandomUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
@@ -20,6 +22,7 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class SalesProductsServiceImpl implements SalesProductsService{
 
     private final SalesProductsRepository salesProductsRepository;
@@ -43,7 +46,7 @@ public class SalesProductsServiceImpl implements SalesProductsService{
         salesProducts.setProduct(product);
         salesProducts.setSale(sale);
         salesProducts.setAmount(salesProductsRequest.saleUnitPrice().multiply(BigDecimal.valueOf(salesProductsRequest.saleQuantity())).subtract(salesProductsRequest.discount()));
-
+        log.info("Amount : {}", salesProducts.getAmount());
         salesProductsRepository.save(salesProducts);
         return salesProductsMapper.toSalesProductsResponse(salesProducts);
 
@@ -95,5 +98,11 @@ public class SalesProductsServiceImpl implements SalesProductsService{
     public List<SalesProductsResponse> findAllBySaleUuid(String saleUuid) {
         List<SalesProducts> salesProductsList = salesProductsRepository.findAllBySaleUuid(saleUuid);
         return salesProductsMapper.toSalesProductsResponseList(salesProductsList);
+    }
+
+    @Transactional
+    @Override
+    public void updateTotalAmount(String saleUuid) {
+        salesProductsRepository.updateTotalAmountBySaleUuid(saleUuid);
     }
 }

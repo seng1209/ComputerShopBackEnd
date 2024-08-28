@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 
 public record UpdateSaleRequest(
         String customerPhone,
-        String staffUuid,
-        @PositiveOrZero(message = "Total Amount must be Positive number.")
-        BigDecimal totalAmount
+        String staffUuid
 ) {
 }

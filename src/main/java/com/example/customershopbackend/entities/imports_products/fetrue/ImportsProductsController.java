@@ -43,4 +43,9 @@ public class ImportsProductsController {
         return importsProductsService.findAllByImportUuid(uuid);
     }
 
+    @PutMapping("/imports/{importUuid}")
+    public void updateTotalAmount(@PathVariable String importUuid){
+        importsProductsService.updateTotalAmount(importUuid);
+    }
+
 }

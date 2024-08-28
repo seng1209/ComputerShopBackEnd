@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class SaleServiceImpl implements SaleService {
         sale.setStaff(staff);
         sale.setCustomer(customer);
         sale.setIsDeleted(false);
+        sale.setTotalAmount(BigDecimal.valueOf(0));
 
         saleRepository.save(sale);
 
@@ -65,7 +67,7 @@ public class SaleServiceImpl implements SaleService {
                 sale.setCustomer(customer);
             }
             if (updateSaleRequest.staffUuid() != null){
-                Staff staff = staffRepository.findByUuid(uuid).orElseThrow(
+                Staff staff = staffRepository.findByUuid(updateSaleRequest.staffUuid()).orElseThrow(
                         () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Staff not found!")
                 );
                 sale.setStaff(staff);

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class ImportServiceImpl implements ImportService{
         imports.setSupplier(supplier);
         imports.setUuid(RandomUtil.random6Digits());
         imports.setImportDate(LocalDateTime.now());
+//        imports.setTotalAmount(BigDecimal.valueOf(0));
         imports.setIsDeleted(false);
 
         importRepository.save(imports);

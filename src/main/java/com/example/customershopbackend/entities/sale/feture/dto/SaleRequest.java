@@ -10,8 +10,8 @@ public record SaleRequest(
         @NotBlank(message = "Customer Phone is required.")
         String customerPhone,
         @NotBlank(message = "Staff UUID is required.")
-        String staffUuid,
-        @PositiveOrZero(message = "Total Amount must be Positive number.")
-        BigDecimal totalAmount
+        String staffUuid
+//        @PositiveOrZero(message = "Total Amount must be Positive number.")
+//        BigDecimal totalAmount
 ) {
 }

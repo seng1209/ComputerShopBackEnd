@@ -4,6 +4,7 @@ import com.example.customershopbackend.entities.imports_products.ImportsProducts
 import com.example.customershopbackend.entities.staff.Staff;
 import com.example.customershopbackend.entities.supplier.Supplier;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,7 +35,7 @@ public class Import {
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
-
+    @Positive
     private BigDecimal totalAmount;
     private Boolean isDeleted;
     @OneToMany(mappedBy = "imports")

@@ -18,4 +18,6 @@ public interface ImportsProductsService {
 
     List<ImportsProductsResponse> findAllByImportUuid(String importUuid);
 
+    void updateTotalAmount(String importUuid);
+
 }
